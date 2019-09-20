@@ -1,0 +1,16 @@
+<a [routerLink]="['/']">Home</a>
+<div *ngIf = 'selectedPet'>
+    <h5>Details about {{selectedPet.name}}</h5>
+    <p>Pet type: {{selectedPet.type}}</p>
+    <p>Description: {{selectedPet.description}}</p>
+    <p>Skills: </p>
+    <ul>
+        <div *ngFor = 'let skill of selectedPet.skills'>
+            <li *ngIf = 'skill.title != ""'>{{skill.title}}</li>
+        </div>
+    </ul>
+    <p>Likes: {{selectedPet.likes}}</p>
+    <button [disabled]="isLiked" (click) = 'upVote()' type = 'btn btn-primary' style = 'margin-right: 10px'>Like this Pet</button>
+    <button (click) = 'deletePet()' type = 'btn btn-primary'>Adopt this Pet</button>
+</div>
+

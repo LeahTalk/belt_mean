@@ -1,0 +1,28 @@
+<h5>Know of a pet needing a home?</h5>
+<form (submit)="checkPet()">
+    <label>Pet Name</label>
+    <p *ngIf = 'nameTaken' style = 'color:red'>A pet with this name already exists in the database!</p>
+    <input #name="ngModel" required minlength="3" type="text" placeholder = 'Name' class="form-control" name="name" [(ngModel)]="newPet.name" /> 
+    <p *ngIf="name.errors?.minlength" style = 'color:purple'>Name must be at least 3 characters long.</p>
+    <p *ngIf="name.errors?.required" style = 'color:purple'>Name is required.</p>
+    <label>Pet Type</label>
+    <input #type="ngModel" required minlength="3" type="text" placeholder = 'Type' class="form-control" name="type" [(ngModel)]="newPet.type" /> 
+    <p *ngIf="type.errors?.minlength" style = 'color:purple'>Type must be at least 3 characters long.</p>
+    <p *ngIf="type.errors?.required" style = 'color:purple'>Type is required.</p>
+    <label>Pet Description</label>
+    <input #description="ngModel" required minlength="3" type="text" placeholder = "Description" class="form-control" name="description" [(ngModel)]="newPet.description" /> 
+    <p *ngIf="description.errors?.minlength" style = 'color:purple'>Description must be at least 3 characters long.</p>
+    <p *ngIf="description.errors?.required" style = 'color:purple'>Description is required.</p>
+    <p>Skills:</p>
+    <div style = 'margin-left: 50px'>
+        <label>Skill 1</label>
+        <input type="text" placeholder = 'Skill 1' class="form-control" name="skil1" [(ngModel)]="skill1" />
+        <label>Skill 2</label>
+        <input type="text" placeholder = 'Skill 2' class="form-control" name="skil2" [(ngModel)]="skill2" />
+        <label>Skill 3</label>
+        <input type="text" placeholder = 'Skill 3' class="form-control" name="skil3" [(ngModel)]="skill3" />
+    </div>
+    <input [disabled]="name.errors || type.errors || description.errors" type="submit" style = 'margin-top: 20px' value="Submit"/>
+    <button [routerLink]="['/pets']">Cancel</button>
+</form>
+    

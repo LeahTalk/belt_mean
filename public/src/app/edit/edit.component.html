@@ -1,0 +1,26 @@
+<h5>Edit this pet</h5>
+<form (submit)="editPet()">
+    <label>Pet Name</label>
+    <input #name="ngModel" required minlength="3" type="text" value = '{{selectedPet.name}}' class="form-control" name="name" [(ngModel)]="newPet.name" /> 
+    <p  *ngIf="name.errors?.minlength" style = 'color:red'>Name must be at least 3 characters long.</p>
+    <p *ngIf="name.errors?.required" style = 'color:red'>Name is required.</p>
+    <label>Pet Type</label>
+    <input #type="ngModel" required minlength="3" type="text" value = '{{selectedPet.type}}' class="form-control" name="type" [(ngModel)]="newPet.type" /> 
+    <p *ngIf="type.errors?.minlength" style = 'color:red'>Type must be at least 3 characters long.</p>
+    <p *ngIf="type.errors?.required" style = 'color:red'>Type is required.</p>
+    <label>Pet Description</label>
+    <input #description="ngModel" required minlength="3" type="text" value = '{{selectedPet.description}}' class="form-control" name="description" [(ngModel)]="newPet.description" /> 
+    <p *ngIf="description.errors?.minlength" style = 'color:red'>Description must be at least 3 characters long.</p>
+    <p *ngIf="description.errors?.required" style = 'color:red'>Description is required.</p>
+    <p>Skills:</p>
+    <div style = 'margin-left: 50px'>
+        <label>Skill 1</label>
+        <input type="text" value = '{{skill1}}' class="form-control" name="skil1" [(ngModel)]="skill1" />
+        <label>Skill 2</label>
+        <input type="text" value = '{{skill2}}' class="form-control" name="skil2" [(ngModel)]="skill2" />
+        <label>Skill 3</label>
+        <input type="text" value = '{{skill3}}' class="form-control" name="skil3" [(ngModel)]="skill3" />
+    </div>
+    <input [disabled]="name.errors || type.errors || description.errors" type="submit" style = 'margin-top: 20px' value="Edit Pet"/>
+    <button [routerLink]="['/pets']">Cancel</button>
+</form>
