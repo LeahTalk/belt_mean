@@ -13,7 +13,7 @@ export class EditComponent implements OnInit {
   skill1;
   skill2;
   skill3;
-
+  nameTaken;
   constructor(private _httpService: HttpService, private router: Router,  
     private myRoute : ActivatedRoute) {
       this.myRoute.params.subscribe((params: Params) => {
@@ -39,6 +39,19 @@ export class EditComponent implements OnInit {
        this.skill2 = this.selectedPet.skills[1].title;
        this.skill3 = this.selectedPet.skills[2].title;
 
+    });
+  }
+
+  checkPet() {
+    let tempObservable  = this._httpService.checkPet(this.newPet['name']);
+    tempObservable.subscribe(data => {
+      if (!data) {
+        this.nameTaken = false;
+        this.editPet();
+      }
+      else {
+        this.nameTaken = true;
+      }
     });
   }
 
